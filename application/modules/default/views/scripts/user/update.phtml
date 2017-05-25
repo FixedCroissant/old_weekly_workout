@@ -1,0 +1,9 @@
+<div id="description">To update your password enter your new password below.</div>
+<div id="update_password">
+	<dl>
+	<dt>Unity ID:</dt><dd><?php echo $this->unityid; ?></dd>
+	</dl>
+	<?php if ($this->flashmessages) 
+		{ echo "<p>" . $this->flashmessages . "</p>";} ?>
+	<p><?php echo $this->form; ?></p>
+</div>

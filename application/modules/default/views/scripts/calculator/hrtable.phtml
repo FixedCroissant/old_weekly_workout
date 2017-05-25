@@ -1,0 +1,10 @@
+<div id="hr_value_table">
+<div id="description">The Heartbeats Per Minute table displays the estimated heartrate counts that correspond to a given level of exercise intensity. Using these estimated values can provide an objective method for evaluating and maintaining a desired level of workout intensity to help you achieve your fitness goals.</div>
+<center>
+<?php echo $this->partial('calculator/_hrtable.phtml', $this->hrdata->array); ?> 
+
+<div id="nav">
+	<a href=<?php echo $this->baseUrl() . "/calculator/add" ?>>&laquo; back to calculator</a>
+	<a href="<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), null, true); ?>">main menu &raquo;</a>
+</div>
+</div>

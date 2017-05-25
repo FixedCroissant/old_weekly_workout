@@ -1,0 +1,16 @@
+<?php
+  $this->title = "Delete Student";
+  $this->headTitle($this->title);
+  ?>
+<p>This will remove the student and all of the workout data from the database.</p>
+<p>Are you sure that you want to delete 
+  '<?php echo $this->escape($this->user['firstname']) . ' ' .  $this->escape($this->user['lastname']); ?>'?
+</p>
+
+<form action="<?php echo $this->url(array('action'=>'delete')); ?>" method="post">
+<div>
+  <input type="hidden" name="unityid" value="<?php echo $this->user['unityid']; ?>" />
+  <input type="submit" name="del" value="Yes" />
+  <input type="submit" name="del" value="No" />
+</div>
+</form>

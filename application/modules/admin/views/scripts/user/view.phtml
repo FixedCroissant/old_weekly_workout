@@ -1,0 +1,34 @@
+<h2><?php echo $this->user['firstname'] . ' ' . $this->user['lastname'];?></h2>
+<p></p>
+
+<?php echo $this->partial('user/_hrtable.phtml', $this->hr); ?>
+
+<!-- All workouts completed prior to current week -->
+<div id="all_workouts">
+	<h3>All Workouts</h3>
+	<table class="spreadsheet" cellspacing="0">
+	<tr>
+		<th>Wk</th>
+		<th>Date</th>
+		<th>Pre HR</th>
+		<th>Peak HR</th>
+		<th>Post HR</th>
+		<th>P.Ups</th>
+		<th>Crunch</th>
+		<th>Length</th>
+		<th>Grade</th>
+		<th>Comment</th>
+	</tr>
+	<?php if ($this->wkdata)
+		{ 
+			echo $this->partialLoop('user/_all_workouts.phtml',	$this->wkdata);
+		}
+		else
+		{
+			echo "<tr class='empty'><td colspan='11'>No workouts exist!</td></tr>"; 
+		} ?>
+
+	</table>
+
+
+</div>

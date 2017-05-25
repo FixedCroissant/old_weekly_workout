@@ -1,0 +1,28 @@
+<div id="description">Use this form to calculate the start and end dates of the weeks for the current semester workout logs.</div>
+<div id="form_wrapper">
+	
+	<div id="workout_dates_form_wrapper">
+		<div id="workout_dates_form">
+			<?php echo $this->form; ?>
+		</div>
+	</div>
+	<div id="dates">
+		<h2>Current Dates</h2>
+		<?php if ($this->range) { 
+			echo "<pre>"; print_r($this->range); echo "</pre>";
+			echo "<table cellspacing='0'>
+						<tr>
+							<th>Week</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+						</tr>";
+			echo $this->partialLoop('dates/dateRow.phtml', $this->range);
+			echo "</table>";
+		} 
+		else
+		{
+			echo "<p>There are no dates currently present in the database!</p>";
+		}
+		?>
+	</div>
+</div>

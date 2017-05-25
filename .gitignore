@@ -1,0 +1,26 @@
+#IGNORE .IDEA
+.idea
+
+#IGNORE FTP QUOTA
+.ftpquota
+
+#IGNORE ZEND MAIN DIRECTORY
+/ZendFramework-1.11.11
+
+#IGNORE SESSION
+application/data/session
+
+#TEMPORARILY IGNORE APP/NCSU/AUTH Library
+/library/App/NCSU/
+
+#IGNORE PUBLIC FOLDER
+/public/
+
+#IGNORE SQL
+*.sql
+
+#IGNORE ZIP FILE
+.zip
+
+#IGNORE info
+info/

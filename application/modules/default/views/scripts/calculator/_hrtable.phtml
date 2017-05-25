@@ -1,0 +1,30 @@
+<center>
+<h3>Heartrate Beats Per Minute</h3>
+<div id="description">The following values are calculated for a <?php echo $this->age; ?> year old <?php if($this->sex == 'm') {echo 'male';} else { echo 'female';} ?> with a resting heartrate of <?php echo $this->rhr; ?> beats per minute.</div>
+</center>
+<?php if ($this->message) { echo "<center>" . $this->message . "</center>"; }?>
+<table class='spreadsheet' cellspacing='0'>
+	<tr>
+		<th>Intensity</th>
+		<th>60%</th>
+		<th>65%</th>
+		<th>70%</th>
+		<th>75%</th>
+		<th>80%</th>
+		<th>85%</th>
+		<th>90%</th>
+		<th>Max</th>
+	</tr>
+	<tr>
+		<td>HR BPM</td>
+		<td><?php echo $this->hr_60; ?></td>
+		<td><?php echo $this->hr_65; ?></td>
+		<td><?php echo $this->hr_70; ?></td>
+		<td><?php echo $this->hr_75; ?></td>
+		<td><?php echo $this->hr_80; ?></td>
+		<td><?php echo $this->hr_85; ?></td>
+		<td><?php echo $this->hr_90; ?></td>
+		<td><?php echo $this->hr_max; ?></td>
+	</tr>	
+</table>
+

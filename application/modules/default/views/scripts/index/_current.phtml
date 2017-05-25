@@ -1,0 +1,11 @@
+<tr>
+	<td><?php echo $this->week; ?></td>
+	<td><?php $date = new Zend_Date($this->date, Zend_Date::TIMESTAMP); echo $date->get(Zend_Date::MONTH_NAME_SHORT) . ' ' . $date->get(Zend_Date::DAY_SHORT); ?></td>
+	<td><?php echo $this->pre_hr;?></td>
+	<td><?php echo $this->peak_hr; ?></td>
+	<td><?php echo $this->post_hr; ?></td>
+	<td><?php echo $this->pushup_no; ?></td>
+	<td><?php echo $this->crunches; ?></td>
+	<td><?php echo $this->workout_length; ?></td>
+	<td><?php echo "<a href=" . $this->baseUrl() . "/index/delete/id/" . $this->workout_id . ">delete</a>"; ?></td>
+</tr>

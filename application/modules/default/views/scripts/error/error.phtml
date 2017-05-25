@@ -1,0 +1,22 @@
+<div>
+<?php if($this->errorType == 404) : ?>
+<p>We could not find the page that you have requested.</p>
+<p>Please try our <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'module' => 'default'), null, true); ?>">Home
+page</a><p>
+
+<?php else: ?>
+<p>An unexpected error has occurred. The issue has been logged and should be
+fixed soon.</p>
+<p>Please return to our <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'module' => 'default'), null, true);
+?>">Home page</a><p>
+<?php endif; ?>
+
+</div>
+<?php
+if(APPLICATION_ENV == 'development') {
+    $msg = $this->exception->getMessage(); 
+    $trace = $this->exception->getTraceAsString();
+    echo "<hr><div>Error: $msg<p><pre>$trace</pre></p></div>"; 
+}
+?>
+

@@ -1,0 +1,5 @@
+<tr>
+	<td><?php echo $this->week; ?></td>
+	<td><?php $start = new Zend_Date($this->start, Zend_Date::TIMESTAMP); echo $start->get(Zend_Date::DATE_FULL); ?></td>
+	<td><?php $end = new Zend_Date($this->end, Zend_Date::TIMESTAMP); echo $end->get(Zend_Date::DATE_FULL); ?></td>
+</tr>

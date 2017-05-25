@@ -1,0 +1,10 @@
+<h2>Add a workout for any user to the database</h2>
+<p>To add a workout for a user to the application database complete and submit this form. Be aware that you may need to download and import the revised grades for a given week if the workout you add is in a prior week.</p>
+<div id="add_any_workout_form_wrapper">
+  <div id="add_any_workout_form">
+<div class="workout_errors"><?php echo "<ul>"; foreach ($this->messages as $error) { echo
+"<li>" . $error . "</li>" ; } echo "</ul>"; ?></div>
+
+<?php echo $this->form; ?>
+    </div>
+</div>

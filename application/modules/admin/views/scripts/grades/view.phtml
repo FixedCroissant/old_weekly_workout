@@ -1,0 +1,29 @@
+<div id="form_wrapper">
+  <div id="view_grades_form_wrapper">
+    <div id="view_grades_form">
+  <h2>Weekly Grades</h2>
+<?php
+	echo $this->form;
+	if (is_array($this->grades))
+	{
+?>
+   
+
+<table class='spreadsheet' cellpadding='0' cellspacing='0'>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>ID</th>
+		<th>Grade</th>
+	</tr>
+<?php echo $this->partialLoop('grades/_gradeRow.phtml', $this->grades); ?>
+</table>
+
+<form action="csv" method="post" name="download_file"><input type="submit" name="submitbutton" value="Download File" />
+<input type="hidden" name="week" id="week" value="<?php echo $this->week; ?>" />
+</form>
+<?php } ?>
+
+ </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<?php echo $this->headTitle()->setPostfix(' - Weekly Workout'); ?>
+	<?php echo $this->headLink()->appendStylesheet($this->baseUrl() . '/css/layout.css') ?>
+
+	<link rel="icon" type="image/jpg" href="/public/images/favicon.jpg"/>
+</head>
+<body class="<?php echo $this->bodyClass; ?>">
+	<div id="login_wrapper">
+		<div id="header">
+			<center>
+			<h1>Weekly Workout Log Application</h1>
+			</center>
+		</div>
+		<div id="login">
+
+				<div id="login_form"><?php echo $this->layout()->content; ?></div>
+				<div id="login_error"><?php if ($this->formError) { echo $this->formError; } ?></div>
+
+                <br/>
+		</div>
+	</div>
+</body>
+</html>

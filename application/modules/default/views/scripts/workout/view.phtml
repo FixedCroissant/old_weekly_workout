@@ -1,0 +1,29 @@
+<!-- All workouts completed prior to current week -->
+<div id="all_workouts">
+	<h3>Past Week's Workouts</h3>
+	<table class="spreadsheet" cellspacing="0">
+	<tr>
+		<th>Wk</th>
+		<th>Date</th>
+		<th>Pre HR</th>
+		<th>Peak HR</th>
+		<th>Post HR</th>
+		<th>P.Ups</th>
+		<th>Crunch</th>
+		<th>Length</th>
+		<th>Grade</th>
+		<th>Comment</th>
+	</tr>
+	<?php if ($this->allWorkouts)
+		{ 
+			echo $this->partialLoop('workout/_all.phtml',	$this->allWorkouts);
+		}
+		else
+		{
+			echo "<tr class='empty'><td colspan='11'>No workouts exist!</td></tr>"; 
+		} ?>
+
+	</table>
+
+
+</div>

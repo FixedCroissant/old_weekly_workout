@@ -1,0 +1,21 @@
+<div id="add_workout_description">Enter your workout data using the form below. </div>
+<div class="workout_errors"><?php echo "<ul>"; foreach ($this->workoutErrors as $error) { echo
+"<li>" . $error . "</li>" ; } echo "</ul>"; ?></div>
+<div id="add_workout_form_wrapper">
+	<div id="add_workout_instructions">
+		<h3>Instructions</h3>
+		<ul>
+			<li>&#187; <span>Month/Day/Year</span> - The date of the workout. Only one workout can be recorded per day.</li>
+			<li>&#187; <span>Pre-Exercise HR</span> - The pre-exercise heartrate count for one minute.</li>
+			<li>&#187; <span>Peak Exercise HR</span> - The maximum heartrate count maintained during exercise taken for 10 seconds.</li>
+			<li>&#187; <span>Post-Exercise HR</span> - The heartrate count taken five minutes after exercise taken for one minute.</li>
+			<li>&#187; <span>Pushups/Pushup Type</span> - The number of standard or modified pushups completed during the exercise session.</li>
+			<li>&#187; <span>Crunches</span> - The number of crunches performed during the exercise session.</li>
+			<li>&#187; <span>Workout Type</span> - The aerobic activity performed during exercise.</li>
+			<li>&#187; <span>Length of Workout</span> - The number of minutes for which the exercise was performed.</li>
+		</ul>
+	</div>
+	<div id="add_workout_form">
+		<?php echo $this->form; ?>
+	</div>
+</div>

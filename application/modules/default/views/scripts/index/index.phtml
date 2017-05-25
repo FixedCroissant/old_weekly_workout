@@ -1,0 +1,45 @@
+<!-- Heartrate Data Table -->
+<div id="heartrate_data_table">
+	<div><?php echo $this->partial('calculator/_hrtable.phtml',	$this->hrdata->array); ?></div>
+</div>
+<div class="link"><a href="<?php echo $this->baseUrl() . '/calculator/add'; ?>">&laquo; Re-calculate Heartrate Range &raquo;</a></div>
+
+<!-- Current week workouts table -->
+<div id="current_week_workouts">
+	<h3>Current Week's Workouts </h3>
+	<p id="range">
+	<!-- a conditional statement that will only print the workout table if the current date falls within the start and end times -->
+	<?php
+	if ($this->start && $this->end)
+	{ 
+		echo "( " . $this->start . " - " . $this->end . " )" . " </p>
+	<table class='spreadsheet' cellspacing='0'>
+	<tr>
+		<th>Wk</th>
+		<th>Date</th>
+		<th>Pre HR (bpm)</th>
+		<th>Peak HR (bpm)</th>
+		<th>Post HR (bpm)</th>
+		<th>Pushups (num)</th>
+		<th>Crunches (num)</th>
+		<th>Length (min)</th>
+		<th>Delete</th>
+	</tr>"; 
+		if ($this->thisWeeksWorkouts)
+		{ 
+			echo $this->partialLoop('index/_current.phtml',	$this->thisWeeksWorkouts);
+		}
+		else
+		{
+			echo "<tr class='empty'><td colspan='11'>There are no workouts
+			recorded for the current week!</td><tr>"; 
+		} 
+
+	echo "</table>
+	<div class='link'><a href="; echo $this->baseUrl() . "/workout/add"; echo ">&laquo; Add Workout &raquo;</a></div>";
+	}
+	else
+	{ 
+		echo "Workouts cannot be entered at this time!"; 
+	} ?>
+</div>
