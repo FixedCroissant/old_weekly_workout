@@ -29,8 +29,8 @@ class IndexController extends Zend_Controller_Action
 			}
 
 			// put the name of the person logged in at the top of the page
-			$this->view->pageHeader = $identity->firstname
-										. " " . $identity->lastname;
+			//$this->view->pageHeader = $identity->firstname
+			//							. " " . $identity->lastname;
 		}
 		else
 		{

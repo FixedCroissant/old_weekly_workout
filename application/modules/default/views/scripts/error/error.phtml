@@ -6,7 +6,14 @@ page</a><p>
 
 <?php else: ?>
 <p>An unexpected error has occurred. The issue has been logged and should be
-fixed soon.</p>
+fixed soon.
+
+<?php
+echo "<h4>";
+echo $this->message;
+echo "</h4>";
+?>
+</p>
 <p>Please return to our <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'index', 'module' => 'default'), null, true);
 ?>">Home page</a><p>
 <?php endif; ?>
@@ -16,7 +23,7 @@ fixed soon.</p>
 if(APPLICATION_ENV == 'development') {
     $msg = $this->exception->getMessage(); 
     $trace = $this->exception->getTraceAsString();
-    echo "<hr><div>Error: $msg<p><pre>$trace</pre></p></div>"; 
+    echo "<hr><div>Error: $msg<p><pre>$trace</pre></p></div>";
 }
 ?>
 

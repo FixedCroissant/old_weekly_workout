@@ -6,9 +6,17 @@ class Plugin_Module extends Zend_Controller_Plugin_Abstract
     {
         $module = $request->getModuleName();
 		$controller = $request->getControllerName();
+
+		//var_dump($controller);
         $front_controller = Zend_Controller_Front::getInstance();
+
+        //var_dump($front_controller);
+
         $error_handler = $front_controller->getPlugin('Zend_Controller_Plugin_ErrorHandler');
-		$error_handler->setErrorHandlerModule($module);
+
+
+
+        $error_handler->setErrorHandlerModule($module);
 
 		// check the module and automatically set the layout
 
