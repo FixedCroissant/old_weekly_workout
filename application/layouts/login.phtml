@@ -13,14 +13,28 @@
 			<h1>Weekly Workout Log Application</h1>
 			</center>
 		</div>
-		<div id="login">
+		<div>
+            <?php if (count($this->messages)) : ?>
+            <ul id="messages">
+                <?php foreach ($this->messages as $message) : ?>
+                    <li><?php echo $this->escape($message); ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <?php endif; ?>
+        </div>
+        <div id="login">
 
 				<div id="login_form"><?php echo $this->layout()->content; ?></div>
 				<div id="login_error"><?php if ($this->formError) { echo $this->formError; } ?></div>
 
                 <br/>
+            <?php
+                if($this->hasAccountCreated){
+                    echo "<p>An account has been created for you. </p>";
+                }
+            ?>
 
-               <a href="<?php echo $this->baseUrl().'/Shibboleth'?> ">Log-In Via Shibboleth</a>
+               <a href="<?php echo $this->baseUrl().'/login/shibboleth'?> ">Log-In Via Shibboleth</a>
 		</div>
 	</div>
 </body>

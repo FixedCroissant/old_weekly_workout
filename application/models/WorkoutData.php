@@ -210,7 +210,7 @@ class Model_WorkoutData extends Zend_Db_Table
 	 */
 	public function getAllWorkoutsByDate($unityid,$startDate,$weekStart)
 	{
-		if (!$weekStart == NULL && !startDate == NULL)
+		if (!$weekStart == NULL && !$startDate == NULL)
 		{
       $rowset = $this->fetchAll($this->select()
               ->where('unityid = ?', $unityid)

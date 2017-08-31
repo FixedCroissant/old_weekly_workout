@@ -21,77 +21,29 @@ class IndexController extends Zend_Controller_Action
 			$identity = $auth->getIdentity();
 			$unityid = $identity->unityid;
 			$role = $identity->role;
+
+			//Get WorkoutInformation
+            $this->getViewData($unityid);
 			
 			// set the layout to include the admin links if role=admin
-			if ($role == 'admin') 
+			if ($role == 'admin')
 			{
 				$this->_helper->layout->setLayout('admin');
 			}
 
 			// put the name of the person logged in at the top of the page
-			//$this->view->pageHeader = $identity->firstname
-			//							. " " . $identity->lastname;
+			$this->view->pageHeader = $identity->firstname
+										. " " . $identity->lastname;
 		}
 		else
 		{
 				$this->_redirect('/login/index');
 		}
     }
-	
+
 	public function indexAction()
 	{
-		// get the controller name
-		$fc = Zend_Controller_Front::getInstance();
-		$controller = $fc->getRequest()->getControllerName();
-		$this->view->controller = $controller;
 
-		if (Zend_Session::namespaceIsset('HeartrateData'))
-		{
-			$hrdata = new Zend_Session_Namespace('HeartrateData');
-			$this->view->hrdata = $hrdata;
-		}
-		else
-		{
-			$this->_helper->redirector('add', 'calculator');
-		}
-
-		$auth = Zend_Auth::getInstance();
-		$unityid = $auth->getIdentity()->unityid;
-
-		// get the current date and it's timestamp 
-		$now     = new Zend_Date();
-		$current = $now->get(Zend_Date::TIMESTAMP);
-
-		// get the workout date ranges from the database
-		$dates     = new Model_WorkoutDates();
-		$workoutModel = new Model_WorkoutData();
-
-		// search the date ranges for the current week
-		$weekArray = $dates->getCurrentWeek($current);
-		$weekStart = $weekArray['start'];
-		$weekEnd = $weekArray['end'];
-
-		if (!$weekArray['start'] || !$weekArray['end'])
-		{
-			return $this->render('index');	
-		}
-		else
-		{
-			/**
-			 * Create a view object to display the range of dates
-			 * encompassed in the current week.
-			 */
-			$startDate = new Zend_Date($weekStart, Zend_Date::TIMESTAMP);
-			$this->view->start = $startDate->get(Zend_Date::DATE_LONG);
-			$endDate = new Zend_Date($weekEnd, Zend_Date::TIMESTAMP);
-			$this->view->end = $endDate->get(Zend_Date::DATE_LONG);
-
-
-			// get the workouts that occurs during the current week
-			$thisWeekWorkouts = 
-				$workoutModel->getThisWeeksWorkouts($unityid, $weekStart, $weekEnd);
-			$this->view->thisWeeksWorkouts = $thisWeekWorkouts;
-		}
 
 	}
 
@@ -103,5 +55,54 @@ class IndexController extends Zend_Controller_Action
 		return $this->_redirect('/index');
 	}
 
+	/**
+     * Pull additional information needed for the view when reloading the index/index file.
+     * @param unityID
+     */
+
+	private function getViewData($unityID){
+
+        // get the date ranges the app will be active
+        // instantiate the view objects
+        $datesModel = new Model_WorkoutDates();
+        $numberOfWeeks = $datesModel->getNumberOfWeeks();
+        $startDate = $datesModel->getStartingDate(1);
+        //Get the week's ending date.
+        $getCurrentWeek = $datesModel->getCurrentWeek($startDate);
+        //Get the week's ending date -- what is returned is an array in the above $getCurrentWeek, must access the key
+        //to get the correct number value, when setting the endDate.
+        $endDate = $datesModel->getEndingDate($getCurrentWeek['week']);
+        $start = new Zend_Date($startDate, Zend_Date::TIMESTAMP);
+        $end = new Zend_Date($endDate, Zend_Date::TIMESTAMP);
+        $now = new Zend_Date();
+        $current = new Zend_Date($now, Zend_Date::TIMESTAMP);
+        $this->view->current = $current->get(Zend_Date::DATE_LONG);
+        //Get Workout Data.
+        $workoutData = new Model_WorkoutData();
+        $weeklyWorkoutData = $workoutData->getThisWeeksWorkouts($unityID,$startDate,$endDate);
+
+        $ns2 = new Zend_Session_Namespace('HeartrateData');
+        $ns2->array = array();
+        $tmp2 = $ns2->array;
+
+        $hrdata = new Model_HeartrateData();
+        //Get logged in user's HR data (if any).
+        $row = $hrdata->getHeartrateData($unityID);
+
+        foreach ($row as $key => $value)
+        {
+            //echo $value;
+            $tmp2[$key] = $value;
+        }
+        $ns2->array = $tmp2;
+        //Information for the view.
+
+        //Reset values for the view.
+        $this->view->start = $start;
+        $this->view->end = $end;
+        $this->view->ns2 = $ns2;
+        //return var_dump($weeklyWorkoutData);
+        $this->view->thisWeeksWorkouts = $weeklyWorkoutData;
+    }
 
 }

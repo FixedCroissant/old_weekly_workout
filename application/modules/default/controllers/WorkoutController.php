@@ -28,15 +28,14 @@ class WorkoutController extends Zend_Controller_Action
      */
     public function init()
     {
-		if (!Zend_Session::namespaceIsset('HeartrateData'))
+		/*if (!Zend_Session::namespaceIsset('HeartrateData'))
 		{
 			$this->_helper->redirector('add', 'calculator');
-		}
+		}*/
         /* Initialize action controller here */
     }
     
-        
-      /**
+ /**
    * checkValidPostHR
    *
    * 	Check whether the user-supplied Post Heart Rate is normal.
@@ -94,11 +93,14 @@ class WorkoutController extends Zend_Controller_Action
 		}
 
 		$formData = $this->getRequest()->getPost();
-		
+
+		//Form is NOT valid and values are correct.
 		if (!$form->isValid($formData))
 		{
-			$form->populate($formData);
-			$this->view->form = $form;
+			//Get information from the form.
+		    $form->populate($formData);
+            $this->view->form = $form;
+			//Go back to the page.
 			return $this->render('add');
 		}
 
@@ -165,7 +167,7 @@ class WorkoutController extends Zend_Controller_Action
 		}
 		else
 		{
-			$this->_flashmessage('You cannot add workouts yet!');
+			$this->_flashmessage('You cannot add workouts yet! The date provided is not within the workout range.');
 			$this->_redirect('/workout/add');
 			return;
 		}
@@ -183,6 +185,7 @@ class WorkoutController extends Zend_Controller_Action
 		//End additions on 12-18-2015.
 
 		//if ($week && $thisWeek)
+        //Valid Submission
 		if ($week && $thisWeek && $postHR<140)
 		{
 			$ns = new Zend_Session_Namespace('HeartrateData');
@@ -219,6 +222,11 @@ class WorkoutController extends Zend_Controller_Action
 							$comment,
 							$submittedBy	
 							);
+
+			//Notification of success.
+            $this->_flashmessage('You have successfully added a workout to the Weekly Workout log.');
+
+            //Error submitting the database.
 			if (!$result) {
 				$this->_flashMessage('The workout could not be added to the	database!');
 				$this->_redirect('/workout/add');
@@ -232,7 +240,7 @@ class WorkoutController extends Zend_Controller_Action
 			return;
 		}
 		
-	$this->_redirect('/index');
+	$this->_forward('/index');
 
 	}
 

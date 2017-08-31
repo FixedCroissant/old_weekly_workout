@@ -52,15 +52,15 @@ class CalculatorController extends Zend_Controller_Action
 		$rhr = $form->getValue('rhr');
 		$sex = $form->getValue('sex');
 
-		// create an object to calculate the required heartrate counts
-		// based on the required level of inensity and store the values
+		// create an object to calculate the required heart rate counts
+		// based on the required level of intensity and store the values
 		// in an array so that they can be rendered to the web page
 		$hr_values = new App_Heartrate_Calculator($age, $rhr, $sex);
 		$hr_range = $hr_values->calculateHeartrateRange();
 		$this->view->values = $hr_range;
 
 		// additional information that is not currently used but may
-		// be used in the future to illustrate how the heartrate counts
+		// be used in the future to illustrate how the heart rate counts
 		// are calculated using the Karvonen Formula
 		$hrr    = $hr_values->getHeartrateReserve();
 

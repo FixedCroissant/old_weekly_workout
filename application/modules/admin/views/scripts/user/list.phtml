@@ -1,4 +1,9 @@
-<div id="user_instructions">This table contains a list of the current administrators and students in the web application database. Users may be deleted from the application database using the 'Delete' link. All data associated with the selected user will be removed including all workouts.
+<div id="user_instructions">
+    This table contains a list of the current administrators and students in the web application database.
+    <br/>
+    Users may be deleted from the application database using the 'Delete' link.
+    <br/>
+    All data associated with the selected user will be removed including all workouts.
 </div>
 <?php
 	if ($this->users != null)
@@ -11,6 +16,7 @@
 		<th>First Name</th>
 		<th>Unity ID</th>
 		<th>Role</th>
+        <th>Semester</th>
 		<th>Links</th>
 	</tr>
 <?php echo $this->partialLoop('user/_user_row.phtml', $this->users); ?>

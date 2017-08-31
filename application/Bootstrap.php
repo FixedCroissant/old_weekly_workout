@@ -35,7 +35,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 
     protected function _initUrl()
     {
-        $baseUrl = substr($_SERVER['PHP_SELF'], 0, 
+        $baseUrl = substr($_SERVER['PHP_SELF'], 0,
         		strpos($_SERVER['PHP_SELF'], '/public/index.php'));
         
         $zcf = Zend_Controller_Front::getInstance();
@@ -49,7 +49,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
             0,
             strpos(strtolower($_SERVER["SERVER_PROTOCOL"]), "/")
         ) . $s;
-        $port = ($_SERVER["SERVER_PORT"] == "80") ? "" 
+        $port = ($_SERVER["SERVER_PORT"] == "80") ? ""
 					: (":".$_SERVER["SERVER_PORT"]);
         $url = $protocol . "://" . $_SERVER['SERVER_NAME'] . $port . $baseUrl;
         
@@ -93,7 +93,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         return $config;
     }
 
-    protected function _initPlugins()
+    /*protected function _initPlugins()
 		{
 			$zcf = Zend_Controller_Front::getInstance();
 
@@ -109,6 +109,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
 			$module = new Plugin_Module();
 			$zcf->registerPlugin($module);
 		}
-   
-	
+
+	*/
 }

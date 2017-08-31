@@ -85,13 +85,52 @@ class Form_User extends App_Form
 			->addMultiOption('admin', 'Administrator')
 			->setValue('Student');
 
+		//element: semester number
+        $semester = new Zend_Form_Element_Select('semester');
+        $semester->setLabel('adduser_semester')
+            ->setRequired(true)
+            ->addMultiOption('','Pick Semester ... ')
+            //2017
+            ->addMultiOption('2178','Fall 2017')
+            //2018
+            ->addMultiOption('2181','Spring 2018')
+            ->addMultiOption('2186','Summer I 2018')
+            ->addMultiOption('2187','Summer II 2018')
+            ->addMultiOption('2188', 'Fall 2018')
+            //2019
+            ->addMultiOption('2181','Spring 2019')
+            ->addMultiOption('2186','Summer I 2019')
+            ->addMultiOption('2187','Summer II 2019')
+            ->addMultiOption('2188', 'Fall 2019')
+            //2020
+            ->addMultiOption('2181','Spring 2020')
+            ->addMultiOption('2186','Summer I 2020')
+            ->addMultiOption('2187','Summer II 2020')
+            ->addMultiOption('2188', 'Fall 2020')
+            //2021
+            ->addMultiOption('2211','Spring 2021')
+            ->addMultiOption('2216','Summer I 2021')
+            ->addMultiOption('2217','Summer II 2021')
+            ->addMultiOption('2218', 'Fall 2021')
+            //2022
+            ->addMultiOption('2221','Spring 2022')
+            ->addMultiOption('2226','Summer I 2022')
+            ->addMultiOption('2227','Summer II 2022')
+            ->addMultiOption('2228', 'Fall 2022')
+            //2023
+            ->addMultiOption('2231','Spring 2023')
+            ->addMultiOption('2236','Summer I 2023')
+            ->addMultiOption('2237','Summer II 2023')
+            ->addMultiOption('2238', 'Fall 2023');
+        ;
+
 		// add user button
 		$adduser = new Zend_Form_Element_Submit('add');
 		$adduser->setAttrib('id','add')
 				->setLabel('adduser_button');
 		
 		// add elements to the form
-		$elements = array($unityid, $studentid, $password1, $password2, $firstname, $lastname, $email, $role, $adduser);
+		$elements = array($unityid, $studentid, $password1, $password2, $firstname, $lastname, $email, $semester, $role, $adduser);
 		$this->addElements($elements);
 
 		// add error summary decorator

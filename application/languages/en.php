@@ -55,11 +55,13 @@ return array
   'adduser_studentid'			=> 'StudentID: ',
 	'adduser_password1'			=> 'Password: ',
 	'adduser_password2'			=> 'Confirm Password: ',
-	'adduser_firstname'			=> 'FirstName: ',
-	'adduser_lastname'			=> 'Lastname: ',
+	'adduser_firstname'			=> 'First Name: ',
+	'adduser_lastname'			=> 'Last Name: ',
 	'adduser_email'				=> 'Email: ',
 	'adduser_role'				=> 'Role: ',
+	'adduser_semester'          => 'Semester:',
 	'adduser_button'			=> 'Add User',
+    'update_user'               => 'Update User',
     
   // view grades form
     'grades_week'   =>  'Select A Week:',

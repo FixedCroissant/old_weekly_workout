@@ -27,6 +27,7 @@ class Admin_UserController extends Zend_Controller_Action
                 $salt = $registry->config->salt;
 
                 // get the form values needed for the model
+                $time = date("Y-m-d H:i:s",time());
                 $unityid = $form->getValue('unityid');
                 $studentid = $form->getValue('studentid');
                 $password = $form->getValue('password1');
@@ -35,16 +36,24 @@ class Admin_UserController extends Zend_Controller_Action
                 $lastname =	$form->getValue('lastname');
                 $email = $form->getValue('email');
                 $role = $form->getValue('role');
+                $term = $form->getValue('semester');
+                $semesterOptions = $form->semester->getMultiOptions();
+                //Get String Representations of the Dropdown.
+                $semesterTerm = $semesterOptions[$term];
 
                 // create an instance of the user model and add the user to db
                 $userModel = new Model_User();
-                $userModel->createUser( $unityid,
+                $userModel->createUser(
+                                        $time,
+                                        $unityid,
                                         $studentid,
                                         $password,
                                         $firstname,
                                         $lastname,
                                         $email,
-                                        $role);
+                                        $role,
+                                        $term,
+                                        $semesterTerm);
                 return $this->_forward('list');
             }
         }
@@ -138,7 +147,13 @@ class Admin_UserController extends Zend_Controller_Action
                 $firstname = $form->getValue('firstname');
                 $lastname =	$form->getValue('lastname');
                 $email = $form->getValue('email');
+                $term = $form->getValue('semester');
+                //DropDown options.
+                $semesterOptions = $form->semester->getMultiOptions();
+                //Get String Representations of the Dropdown.
+                $semesterTerm = $semesterOptions[$term];
                 $role = $form->getValue('role');
+
 
                 // create an instance of the user model and add the user to db
                 $userModel = new Model_User();
@@ -148,7 +163,10 @@ class Admin_UserController extends Zend_Controller_Action
                                         $lastname,
                                         $password,
                                         $email,
-                                        $role);
+                                        $role,
+                                        $term,
+                                        $semesterTerm
+                                        );
                 return $this->_forward('list');
             }
         }

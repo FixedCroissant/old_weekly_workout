@@ -5,12 +5,13 @@ class Model_User extends Zend_Db_Table_Abstract
 	protected $_name = 'users';
 	protected $_primary = 'unityid';
 
-	public function createUser ($unityid, $studentid, $password, $firstname, $lastname, $email, $role)
+	public function createUser ($timesstamp,$unityid, $studentid, $password, $firstname, $lastname, $email, $role,$semester,$semesterString)
 	{
 		// create a new row
 		$rowUser = $this->createRow();
 		if($rowUser)
 		{
+		    $rowUser->created_at = $timesstamp;
 			$rowUser->unityid    = $unityid;
 			$rowUser->studentid  = $studentid;
 			$rowUser->password   = sha1($password);
@@ -18,6 +19,8 @@ class Model_User extends Zend_Db_Table_Abstract
 			$rowUser->lastname   = $lastname;
 			$rowUser->email      = $email;
 			$rowUser->role       = $role;
+			$rowUser->semester   = $semester;
+			$rowUser->semesterString = $semesterString;
 			$rowUser->save();
 			// return the new user
 			return $rowUser;
@@ -46,10 +49,9 @@ class Model_User extends Zend_Db_Table_Abstract
 	 public static function getUsers()
 	 {
 		 $userModel = new self();
-		 $select = $userModel->select()
-		 				->from('users', array('lastname','firstname','unityid','role'))
-						->order(array('role','lastname','firstname'));
-		return $userModel->fetchAll($select);
+		 $select = $userModel->select()->from('users');
+
+		 return $userModel->fetchAll($select);
 	}
 
 	/**
@@ -59,10 +61,12 @@ class Model_User extends Zend_Db_Table_Abstract
 	 * @param mixed $firstname 
 	 * @param mixed $lastname 
 	 * @param mixed $email 
-	 * @param mixed $role 
+	 * @param mixed $role
+     * @param mixed $semester
+     * @param mixed $semesterTerm
 	 * @return void
 	 */
-	public function updateUser($unityid, $studentid, $firstname, $lastname, $password, $email, $role)
+	public function updateUser($unityid, $studentid, $firstname, $lastname, $password, $email, $role, $semester, $semesterString)
 	{
 		// fetch the user's row
 		$rowUser = $this->find($unityid)->current();
@@ -77,6 +81,8 @@ class Model_User extends Zend_Db_Table_Abstract
       $rowUser->password  = sha1($password);
 			$rowUser->email     = $email;
 			$rowUser->role      = $role;
+            $rowUser->semester   = $semester;
+            $rowUser->semesterString = $semesterString;
 			$rowUser->save();
 
 			// return the updated user

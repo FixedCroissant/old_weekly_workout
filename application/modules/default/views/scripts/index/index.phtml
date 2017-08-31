@@ -1,6 +1,6 @@
 <!-- Heartrate Data Table -->
 <div id="heartrate_data_table">
-	<div><?php echo $this->partial('calculator/_hrtable.phtml',	$this->hrdata->array); ?></div>
+	<div><?php echo $this->partial('calculator/_hrtable.phtml',	$this->ns2->array); ?></div>
 </div>
 <div class="link"><a href="<?php echo $this->baseUrl() . '/calculator/add'; ?>">&laquo; Re-calculate Heartrate Range &raquo;</a></div>
 
@@ -31,8 +31,7 @@
 		}
 		else
 		{
-			echo "<tr class='empty'><td colspan='11'>There are no workouts
-			recorded for the current week!</td><tr>"; 
+			echo "<tr class='empty'><td colspan='11'>There are no workouts recorded for the current week!</td><tr>";
 		} 
 
 	echo "</table>
