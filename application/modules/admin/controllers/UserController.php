@@ -178,8 +178,8 @@ class Admin_UserController extends Zend_Controller_Action
         // insert the current values into the form
         $form->getElement('unityid')->setValue($user['unityid']);
         $form->getElement('studentid')->setValue($user['studentid']);
-        $form->getElement('firstname')->setValue($user['firstname']);
-        $form->getElement('lastname')->setValue($user['lastname']);
+        $form->getElement('first_name')->setValue($user['first_name']);
+        $form->getElement('last_name')->setValue($user['last_name']);
         $form->getElement('email')->setValue($user['email']);
         $form->getElement('add')->setLabel('update_user');
         

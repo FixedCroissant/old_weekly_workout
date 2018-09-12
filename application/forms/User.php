@@ -49,8 +49,8 @@ class Form_User extends App_Form
 				->getValidator('Identical')
 					->setMessage(' - The passwords do not match!');
 
-		// element: firstname
-		$firstname = new App_Form_Element_Text('firstname');
+		// element: first_name
+		$firstname = new App_Form_Element_Text('first_name');
 		$firstname->setLabel('adduser_firstname')
 				->setAttrib('size', '30')
 				->setRequired(true)
@@ -58,8 +58,8 @@ class Form_User extends App_Form
 				->addFilter('StringTrim')
 				->addValidator('NotEmpty',true);
 
-		// element: lastname
-		$lastname = new App_Form_Element_Text('lastname');
+		// element: last_name
+		$lastname = new App_Form_Element_Text('last_name');
 		$lastname->setLabel('adduser_lastname')
 				->setAttrib('size', '30')
 				->setRequired(true)

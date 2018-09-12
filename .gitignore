@@ -10,8 +10,7 @@
 #IGNORE SESSION
 application/data/session
 
-#TEMPORARILY IGNORE APP/NCSU/AUTH Library
-/library/App/NCSU/
+
 
 #IGNORE PUBLIC FOLDER
 /public/

@@ -15,8 +15,8 @@ class Model_User extends Zend_Db_Table_Abstract
 			$rowUser->unityid    = $unityid;
 			$rowUser->studentid  = $studentid;
 			$rowUser->password   = sha1($password);
-			$rowUser->firstname  = $firstname;
-			$rowUser->lastname   = $lastname;
+			$rowUser->first_name  = $firstname;
+			$rowUser->last_name   = $lastname;
 			$rowUser->email      = $email;
 			$rowUser->role       = $role;
 			$rowUser->semester   = $semester;

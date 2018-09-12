@@ -266,10 +266,16 @@ class LoginController extends Zend_Controller_Action
     public function shibbolethAction(){
         //Function automatically goes to the /controllerName/action. within scripts.
 
+        //CALL SHIB.
         //Get Shibboleth adapter from DB.
         //$shibDB = Zend_Db_Table::getDefaultAdapter();
         //Create new Adapter for Shibboleth.
-        $shibAuth = new App_NCSU_Adapter_ShibAuthAdapter();
+        // library/App/NCSU/Adapter/ShibAuthAdapter.
+        //Is loading the proper class, to se
+        //$shibAuth =  new App_NCSU_Adapter_ShibAuthAdapter();
+       //Un comment to see it is loading the appropriate class.
+        //return var_dump($shibAuth->authenticate());
+        //END CALL SHIB.
 
         //Get Current Term
         $currentSemester = $this->getCurrentTerm();
@@ -277,6 +283,7 @@ class LoginController extends Zend_Controller_Action
         $currentSemesterString = $this->getTermString($currentSemester);
 
         //Set up account data for use with the creation of the account.
+        //This is a temporary account, it will eventually be data through Shibboleth.
         $acctData = array(
             'timestamp'=>date("Y-m-d H:i:s",time()),
             'unityid'=>'jjwill10',
@@ -289,6 +296,7 @@ class LoginController extends Zend_Controller_Action
             'term'=>$currentSemester,
             'stringSemester'=>$currentSemesterString
         );
+        //End temporary account.
 
 
         $registry = Zend_Registry::getInstance();
